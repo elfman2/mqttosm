@@ -103,7 +103,7 @@ function mqtt_connect(){
 	client.onMessageArrived = onMessageArrived;
 
 	// connect the client
-	client.connect({onSuccess:onConnect});
+	client.connect({onSuccess:onConnect, useSSL: useTLS});
 }
 
 // called when the client connects
