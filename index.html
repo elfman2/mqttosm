@@ -95,7 +95,7 @@ var client;
 
 function mqtt_connect(){
 	  // Create a client instance
-	client = new Paho.MQTT.Client("test.mosquitto.org", 8080, "maps-"+Date.now());
+	client = new Paho.MQTT.Client("test.mosquitto.org", 8081, "maps-"+Date.now());
 //	client = new Paho.MQTT.Client("192.168.1.133", 8000, "maps-"+Date.now());
 	
 	// set callback handlers
