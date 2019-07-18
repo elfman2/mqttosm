@@ -25,9 +25,9 @@
 	
     function initialize_map() {
 		map = L.map("map").setView([mapLat,mapLng],mapDefaultZoom);
-		L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1Ijoibmljbzc3NyIsImEiOiJjank1aXoxOWQwN2U4M21sZXZ5emdpYWtsIn0.Yh03GxMvZzeE_A3J7IM9gg', {
+		//https://api.tiles.mapbox.com/v4/{id}
+		L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/outdoors-v11/tiles/{z}/{x}/{y}.png?access_token=pk.eyJ1Ijoibmljbzc3NyIsImEiOiJjank1aXoxOWQwN2U4M21sZXZ5emdpYWtsIn0.Yh03GxMvZzeE_A3J7IM9gg', {
 		attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-		maxZoom: mapDefaultZoom,
 		id: 'mapbox.outdoors',
 		accessToken: 'pk.eyJ1Ijoibmljbzc3NyIsImEiOiJjank1aXoxOWQwN2U4M21sZXZ5emdpYWtsIn0.Yh03GxMvZzeE_A3J7IM9gg'
 	}).addTo(map);
