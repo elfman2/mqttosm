@@ -31,8 +31,7 @@
 		attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
 		accessToken: 'pk.eyJ1Ijoibmljbzc3NyIsImEiOiJjank1aXoxOWQwN2U4M21sZXZ5emdpYWtsIn0.Yh03GxMvZzeE_A3J7IM9gg'
 	}).addTo(map);
-
-
+	map.removeControl(map.zoomControl);
 	if (L.Browser.android) {
 	
 		saricon = L.icon({
