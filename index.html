@@ -37,20 +37,21 @@
 	map.removeControl(map.zoomControl);
 	map.on('locationerror', function(){console.log('cannot locate');});
 	map.on('locationfound', function(){console.log('Locate OK');});
+    }
 
     function add_map_point(type,ident,lat, lng) {
     	if (ident in  markers ){
     		markers[ident].remove(map);
     	}
-		marker_icon.options.icon = type==="HC" ? "SAR.svg" : type==="UAV" ? "drone.svg" : "climber.svg";
-		var marker = L.marker([parseFloat(lat),parseFloat(lng)],{icon:marker_icon}).addTo(map);
-		var string = "<b>"+ident+"</b>";
-		if (L.Browser.android){
-			string = '<div style="font-size:200%">'+string+'</div>';
-		}		
-		var ttip = L.tooltip({direction:"right"}).setContent(string);
-		marker.bindTooltip(ttip).openTooltip();
-		markers[ident] = marker;
+	marker_icon.options.icon = type==="HC" ? "SAR.svg" : type==="UAV" ? "drone.svg" : "climber.svg";
+	var marker = L.marker([parseFloat(lat),parseFloat(lng)],{icon:marker_icon}).addTo(map);
+	var string = "<b>"+ident+"</b>";
+	if (L.Browser.android){
+		string = '<div style="font-size:200%">'+string+'</div>';
+	}		
+	var ttip = L.tooltip({direction:"right"}).setContent(string);
+	marker.bindTooltip(ttip).openTooltip();
+	markers[ident] = marker;
     }
 
 	var client;
