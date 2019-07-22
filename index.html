@@ -46,9 +46,6 @@
 	marker_icon.options.iconUrl = type==="HC" ? "SAR.svg" : type==="UAV" ? "drone.svg" : "climber.svg";
 	var marker = L.marker([parseFloat(lat),parseFloat(lng)],{icon:marker_icon}).addTo(map);
 	var string = "<b>"+ident+"</b>";
-	if (L.Browser.android){
-		string = '<div style="font-size:200%">'+string+'</div>';
-	}		
 	var ttip = L.tooltip({direction:"right"}).setContent(string);
 	marker.bindTooltip(ttip).openTooltip();
 	markers[ident] = marker;
