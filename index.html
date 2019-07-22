@@ -34,47 +34,22 @@
 	map.removeControl(map.zoomControl);
 	map.on('locationerror', function(){console.log('cannot locate');});
 	map.on('locationfound', function(){console.log('Locate OK');});
-	if (L.Browser.android) {
-	
-		saricon = L.icon({
-			iconUrl: 'SAR.svg',
-			iconSize: [60, 60],
-			popupAnchor: [0, -30],
-			tooltipAnchor:[30,0]
-		});
-		droneicon = L.icon({
-			iconUrl: 'drone.svg',
-			iconSize: [60, 60],
-			popupAnchor: [0, -30],
-			tooltipAnchor:[30,0]
-		});
-		climbericon = L.icon({
-			iconUrl: 'climber.svg',
-			iconSize: [60, 60],
-			popupAnchor: [0, -30],
-			tooltipAnchor:[30,0]
-		});
-	}else{
-		saricon = L.icon({
-			iconUrl: 'SAR.svg',
-			iconSize: [30, 30],
-			popupAnchor: [0, -15],
-		});
-		droneicon = L.icon({
-			iconUrl: 'drone.svg',
-			iconSize: [30, 30],
-			popupAnchor: [0, -15],
-			tooltipAnchor:[10,0]
-		});
-		climbericon = L.icon({
-			iconUrl: 'climber.svg',
-			iconSize: [30, 30],
-			popupAnchor: [0, -15],
-		});
-
-	}
-
-
+	saricon = L.icon({
+		iconUrl: 'SAR.svg',
+		iconSize: [30, 30],
+		popupAnchor: [0, -15],
+	});
+	droneicon = L.icon({
+		iconUrl: 'drone.svg',
+		iconSize: [30, 30],
+		popupAnchor: [0, -15],
+		tooltipAnchor:[10,0]
+	});
+	climbericon = L.icon({
+		iconUrl: 'climber.svg',
+		iconSize: [30, 30],
+		popupAnchor: [0, -15],
+	});
     }
 
     function add_map_point(type,ident,lat, lng) {
