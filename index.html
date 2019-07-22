@@ -42,7 +42,7 @@
     	if (ident in  markers ){
     		markers[ident].remove(map);
     	}
-		var marker_icon.options.icon = type==="HC" ? "SAR.svg" : type==="UAV" ? "drone.svg" : "climber.svg";
+		marker_icon.options.icon = type==="HC" ? "SAR.svg" : type==="UAV" ? "drone.svg" : "climber.svg";
 		var marker = L.marker([parseFloat(lat),parseFloat(lng)],{icon:marker_icon}).addTo(map);
 		var string = "<b>"+ident+"</b>";
 		if (L.Browser.android){
