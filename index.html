@@ -5,21 +5,16 @@
 	<meta charset="utf-8">
 	<title>OpenStreetMap &amp; OpenLayerss - Marker Example</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
-   integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
    crossorigin=""/>
-	<script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"
-   integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og=="
+	<script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js" integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og=="
    crossorigin=""></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.min.js" type="text/javascript"></script>
 	<script>
     /* OSM & OL example code provided by https://mediarealm.com.au/ */
-    var map;
-    var mapLat = 44.6068;
-	var mapLng = 6.2067;
-    var mapDefaultZoom = 15;
+	var map;
 	var markers = {};
-	
+
 	var marker_icon = L.icon({
 		iconUrl: 'drone.svg',
 		iconSize: [30, 30],
@@ -27,29 +22,30 @@
 		tooltipAnchor:[10,0]
 	});
 	
-    function initialize_map() {
+	function initialize_map() {
 		map = L.map("map").locate({setView:true});
 		//https://api.tiles.mapbox.com/v4/{id}
 		L.tileLayer('https://api.mapbox.com/styles/v1/nico777/cjy87idy90ncf1clhb6j3n5ia/draft/tiles/{z}/{x}/{y}?access_token=pk.eyJ1Ijoibmljbzc3NyIsImEiOiJjank1aXoxOWQwN2U4M21sZXZ5emdpYWtsIn0.Yh03GxMvZzeE_A3J7IM9gg', {
 		attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
 		accessToken: 'pk.eyJ1Ijoibmljbzc3NyIsImEiOiJjank1aXoxOWQwN2U4M21sZXZ5emdpYWtsIn0.Yh03GxMvZzeE_A3J7IM9gg'
-	}).addTo(map);
-	map.removeControl(map.zoomControl);
-	map.on('locationerror', function(){console.log('cannot locate');});
-	map.on('locationfound', function(){console.log('Locate OK');});
-    }
+		}).addTo(map);
+		
+		map.removeControl(map.zoomControl);
+		map.on('locationerror', function(){console.log('cannot locate');});
+		map.on('locationfound', function(){console.log('Locate OK');});
+	}
 
-    function add_map_point(type,ident,lat, lng) {
-    	if (ident in  markers ){
-    		markers[ident].remove(map);
-    	}
-	marker_icon.options.iconUrl = type==="HC" ? "SAR.svg" : type==="UAV" ? "drone.svg" : "climber.svg";
-	var marker = L.marker([parseFloat(lat),parseFloat(lng)],{icon:marker_icon}).addTo(map);
-	var string = "<b>"+ident+"</b>";
-	var ttip = L.tooltip({direction:"right"}).setContent(string);
-	marker.bindTooltip(ttip).openTooltip();
-	markers[ident] = marker;
-    }
+	function add_map_point(type,ident,lat, lng) {
+		if (ident in  markers ){
+			markers[ident].remove(map);
+		}
+		marker_icon.options.iconUrl = type==="HC" ? "SAR.svg" : type==="UAV" ? "drone.svg" : "climber.svg";
+		var marker = L.marker([parseFloat(lat),parseFloat(lng)],{icon:marker_icon}).addTo(map);
+		var string = "<b>"+ident+"</b>";
+		var ttip = L.tooltip({direction:"right"}).setContent(string);
+		marker.bindTooltip(ttip).openTooltip();
+		markers[ident] = marker;
+	}
 
 	var client;
 
