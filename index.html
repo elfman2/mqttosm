@@ -94,14 +94,14 @@
 
 	function mqtt_connect(){
 		// Create a client instance
-		client = new Paho.MQTT.Client("test.mosquitto.org", 8081, "maps-"+Date.now());
+		client = new Paho.MQTT.Client("m20.cloudmqtt.com", 35905, "maps-"+Date.now());
 	
 		// set callback handlers
 		client.onConnectionLost = onConnectionLost;
 		client.onMessageArrived = onMessageArrived;
 
 		// connect the client
-		client.connect({onSuccess:onConnect, useSSL: true});
+		client.connect({onSuccess:onConnect, useSSL: true,userName:"nico",password:"nico"});
 	}
 
 	// called when the client connects
