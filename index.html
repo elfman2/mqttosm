@@ -123,8 +123,10 @@
 	// called when a message arrives
 	function onMessageArrived(message) {
 	  obj = JSON.parse(message.payloadString);
-	  console.log("onMessageArrived: "+obj.type+" / "+obj.ident+" lat"+obj.lat+" long" +obj.long); 
-	  add_map_point(obj.type,obj.ident,obj.lat,obj.long); 
+	  if (obj._type === "location"){
+		  console.log("onMessageArrived: "+obj.tid+" lat"+obj.lat+" long" +obj.lon); 
+		  add_map_point('climber',obj.tid,obj.lat,obj.lon); 
+	  }
 	}
 
 	function onUnload(){
